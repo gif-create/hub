@@ -1131,6 +1131,60 @@ body.hub .hsr{display:inline-block}
 .pet-px .f{fill:var(--fg);opacity:.55}
 .pet-px .f.st{fill:var(--h-amber);opacity:.9}
 .pet-px .r{fill:#FF4D5E}
+/* hub11 */
+.h11hero{text-align:center;padding:2px 0 0}
+.h11top{display:flex;justify-content:space-between;align-items:center;font:500 12px var(--mono);color:var(--muted)}
+.h11top b{font:600 16px var(--px);color:var(--h-amber)}
+.h11pet{display:grid;place-items:center;width:250px;height:200px;margin:2px auto 0;background:radial-gradient(closest-side,color-mix(in srgb,var(--ac) 35%,transparent),transparent)}
+.h11pet .pet-px{width:190px;height:163px;filter:drop-shadow(0 0 12px color-mix(in srgb,var(--ac) 60%,transparent))}
+.h11say{margin:0;font:600 19px var(--px)}
+.h11xp{display:flex;align-items:center;gap:8px;margin:8px 36px 12px;font:500 11px var(--mono);color:var(--muted)}
+.h11xp .xpbar{flex:1;margin:0}
+.h11tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.h11t{display:flex;align-items:center;gap:10px;min-width:0;min-height:76px;padding:9px 10px;text-align:left;background:var(--surface);color:var(--fg);border:2px solid var(--line);border-radius:8px;box-shadow:0 3px 0 color-mix(in srgb,#000 55%,transparent);font:inherit;text-decoration:none;cursor:pointer}
+.h11t b{display:block;font:600 17px var(--px)}
+.h11t small{display:block;font:500 12px/1.2 var(--mono);color:var(--muted)}
+.h11t .rg{position:relative;flex:none;width:54px;height:54px;display:grid;place-items:center}
+.h11t .rg svg{position:absolute;inset:0;width:100%;height:100%}
+.h11t .rg b{position:relative;font:600 16px var(--px)}
+.h11ql{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:8px}
+.h11q{display:flex;align-items:center;gap:12px;min-height:52px;padding:0 12px;background:var(--surface);color:var(--fg);border:2px solid var(--line);border-radius:8px;box-shadow:0 3px 0 color-mix(in srgb,#000 55%,transparent);text-decoration:none}
+.h11ck{flex:none;width:26px;height:26px;border:2px solid var(--muted);display:grid;place-items:center;font:600 16px var(--px);color:var(--bg);box-sizing:border-box}
+.h11q.done{opacity:.7}.h11q.done .h11ck{background:var(--h-mint);border-color:var(--h-mint)}
+.h11q.done .h11qt{text-decoration:line-through;color:var(--muted)}
+.h11qt{flex:1;min-width:0;font:500 17px var(--px)}
+.h11xpl{font:500 12px var(--mono);color:var(--h-amber)}
+.h11day>summary{display:flex;justify-content:space-between;align-items:baseline;min-height:44px;cursor:pointer}
+.h11day>summary b{font:600 17px var(--px)}.h11day>summary small{font:500 12px var(--mono);color:var(--muted)}
+
+.h11q.hot{border-color:var(--coral)}.h11q.hot .h11xpl{color:var(--coral)}.h11day>.h11tiles,.h11day>.tiles,.h11day>.sec{margin-top:12px}
+/* единый пиксельный шрифт везде */
+:root{--font-b:var(--px);--font-d:var(--px);--mono:var(--px)}
+body.hub,body.hub button,body.hub input,body.hub textarea,body.hub select{font-family:var(--px)}
+
+/* hub10 */
+.dq,.dq2,.dch{font-family:var(--px)}
+.dq .dlab,.dq2 .dlab,.dch .dchr>span{font:500 15px var(--px);color:var(--muted)}
+.dq .dlab b,.dq2 .dlab b{color:var(--fg);font-weight:600}
+.dstep button{font:600 14px var(--px)}
+.dbtns button{font:600 17px var(--px)}
+.dbtns.mo button{font-size:22px}
+.dq .hint,.dq2 .hint,.dch .hint{font:500 14px/1.4 var(--px)}
+.mvc{font-family:var(--px);font-size:15px;line-height:1.35}
+.mvc b{font-weight:600}
+.mvc.rvc .go2{font-family:var(--px)}
+.dent{gap:10px}
+.dnew{display:flex;gap:8px}
+.dnew input{flex:1;min-width:0;background:var(--panel);border:2px solid var(--line);border-radius:6px;padding:11px 12px;font:500 16px var(--px);color:var(--fg)}
+.dnew input::placeholder{color:var(--muted)}
+.dnew input:focus{border-color:var(--ac);outline:0}
+.dnew .dgo{flex:none;min-width:46px;padding:4px 14px;font-size:24px;line-height:1;background:var(--ac);color:var(--bg)}
+.dlog{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.dli{width:100%;display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;text-align:left;border:2px solid var(--line);background:var(--surface);color:var(--fg);padding:9px 11px;border-radius:6px;font:500 15px/1.35 var(--px);cursor:pointer;overflow-wrap:anywhere}
+.dli time{color:var(--ac);font:600 13px var(--mono);padding-top:2px}
+.dli span{min-width:0;white-space:pre-wrap}
+.dli:active{transform:translateY(1px)}
+
 
 
 
@@ -3112,6 +3166,7 @@ function noteRoute(text,cat,subj){text=text.trim();const one=!text.includes('\n'
 function listRoute(text,cat){cat=cat||catBuy();const items=text.split(/[,;\n]|\s+и\s+/).map(x=>cap(x.trim().replace(/[.!]+$/,''))).filter(Boolean);
   const note=notes().filter(n=>n.cat===cat.id&&n.items).sort((a,b)=>(b.ts||0)-(a.ts||0))[0]||null;return {dest:'list',cat,note,items};}
 function smartRoute(raw,defCat){let m;
+  if((m=/^(дневник|день)\s*[:\-—]\s*([\s\S]+)$/i.exec(raw)))return {dest:'diary',text:m[2].trim()};
   if((m=/^(заметка|заметку|запиши|записать|запомни|запомнить)\s*[:\-—]?\s+([\s\S]+)$/i.exec(raw)))return noteRoute(m[2],defCat,null);
   if((m=/^(идея|идейка|мысль)\s*[:\-—]?\s+([\s\S]+)$/i.exec(raw)))return noteRoute(m[2],catIdeas(),null);
   if((m=/^([^:\s][^:\n]{0,24}):\s*([\s\S]+)$/.exec(raw))){const w=m[1].trim(),c=catByWord(w);if(c)return noteRoute(m[2],c,null);const sj=subjByWord(w);if(sj)return noteRoute(m[2],catStudy(),sj);}
@@ -3128,7 +3183,8 @@ function qaResolve(form){const q=form.querySelector('.qain').value.trim();if(!q)
 const short=(t,n)=>t.length>n?t.slice(0,n-1)+'…':t;
 function qaPreview(form){const pv=form.parentElement.querySelector('.qprev');const R=qaResolve(form);if(!R){pv.innerHTML='';form.dataset.dest='';return;}
   const ch=[];
-  if(R.dest==='task'){const r=R.t,s=subjById(r.subj),p=QP.prioOf(r,TODAY);
+  if(R.dest==='diary'){ch.push(`<span class="qp">в дневник · сегодня</span>`);ch.push(`<span class="qp">«${escH(short(R.text,30))}»</span>`);ch.push(`<button type="button" class="qp" data-xdest="task">сделать делом</button>`);}
+  else if(R.dest==='task'){const r=R.t,s=subjById(r.subj),p=QP.prioOf(r,TODAY);
     ch.push(`<span class="qp">«${escH(short(r.title,30))}»</span>`);
     ch.push(`<span class="qp">${r.due?dueText(r.due,r.time):'без срока'}</span>`);
     ch.push(`<span class="qp">${s?escH(s.name):TAGS[r.tag][0]}</span>`);
@@ -3146,6 +3202,7 @@ function qaPreview(form){const pv=form.parentElement.querySelector('.qprev');con
 function addTask(r){const t={id:nid(),t:r.title,due:r.due||null,time:r.time||null,subj:r.subj||null,tag:r.tag||'life',prio:r.prio==null?null:r.prio,heavy:!!r.heavy,done:false,ts:Date.now()};tasks().unshift(t);docSet('tasks');return t;}
 function qaSubmit(form){const R=qaResolve(form);const inp=form.querySelector('.qain');if(!R){inp.focus();return;}
   const fin=()=>{inp.value='';form.dataset.dest='';inp.blur();hap('ok');rerender();};
+  if(R.dest==='diary'){dAddEntry(TODAY,R.text);fin();toast('Записано в дневник','Открыть',()=>{location.hash='#mood';});return;}
   if(R.dest==='task'){const t=addTask(R.t);fin();toast('Добавлено: '+(t.due?dueText(t.due,t.time):'без срока')+' · '+PRI[prioT(t)][0],'Изменить',()=>taskSheet(t.id));return;}
   if(R.dest==='note'){const n={id:nid(),cat:R.cat.id,title:R.title,body:R.body,items:null,pin:false,subj:R.subj?R.subj.id:null,ts:Date.now()};notes().unshift(n);docSet('notes');fin();
     toast('Записано в «'+R.cat.n+'»','Открыть',()=>{location.hash='#note-'+n.id;});return;}
@@ -4041,6 +4098,100 @@ function h9Click(ev){const b=ev.target.closest('[data-xpw],[data-xwd]');if(!b)re
   if(k==='auto')w=null;else if(k==='hat'||k==='col'||k==='bg')w[k]=v;else w[k]=!w[k];
   const n={...c};if(w)n.pw=w;else delete n.pw;docSet('cfg',n);hap('sel');wardSheet();pendingRender=true;return true;}
 
+/* hub10: дневник с записями в течение дня, без карточки итогов на «Сегодня» */
+/* ---- записи: day.es = [{id,t,ts,eu}], удалённые id лежат в day.dx ---- */
+function dEnts(d){const e=DY()[d];if(!e)return [];
+  if(e.nt){const id='L'+d;if(!(e.dx||[]).includes(id)&&!(e.es||[]).some(x=>x.id===id)){e.es=e.es||[];e.es.push({id,t:e.nt,ts:e.ts||new Date(d+'T12:00').getTime()});}delete e.nt;}
+  return (e.es||[]).slice().sort((a,b)=>b.ts-a.ts);}
+function dAddEntry(d,text){text=String(text||'').trim();if(!text)return false;
+  const isNew=!DY()[d];const e=DY()[d]=DY()[d]||{};dEnts(d);e.es=e.es||[];
+  e.es.push({id:nid(),t:text.slice(0,1000),ts:d===TODAY?Date.now():new Date(d+'T12:00').getTime()+e.es.length*1000});
+  e.ts=Date.now();docSet('diary');if(isNew)xpAdd(5);return true;}
+function dput(d,k,v){const isNew=!DY()[d];const e=DY()[d]=DY()[d]||{};if(v==null||v===''||v===false)delete e[k];else e[k]=v;e.ts=Date.now();
+  if(e.sl==null&&!e.mo&&!e.en&&!e.nt&&!(e.es&&e.es.length))delete DY()[d];docSet('diary');if(isNew&&DY()[d])xpAdd(5);}
+MERGE.diary=(l,c)=>{if(!l||!c||!c.d)return l;const d={...c.d};
+  for(const k in l.d){const a=l.d[k],b=d[k];if(!b){d[k]=a;continue;}
+    const r={...((a.ts||0)>=(b.ts||0)?a:b)},dx=[...new Set([...(a.dx||[]),...(b.dx||[])])],m=new Map();
+    [...(a.es||[]),...(b.es||[])].forEach(x=>{if(x&&x.id&&!dx.includes(x.id)){const o=m.get(x.id);if(!o||(x.eu||x.ts||0)>=(o.eu||o.ts||0))m.set(x.id,x);}});
+    const es=[...m.values()].sort((p,q)=>(p.ts||0)-(q.ts||0));
+    if(es.length)r.es=es;else delete r.es;if(dx.length)r.dx=dx.slice(-50);else delete r.dx;d[k]=r;}
+  return {d};};
+function diaryEntries(d){const L=dEnts(d);
+  const li=L.map(x=>{const dt=new Date(x.ts),same=iso(dt)===d;return `<li><button type="button" class="dli" data-xde="${d}|${x.id}"><time>${same?P2(dt.getHours())+':'+P2(dt.getMinutes()):'·'}</time><span>${escH(x.t)}</span></button></li>`;}).join('');
+  return `<div class="drw dent"><div class="dlab"><span>${d===TODAY?'Дневник за день':'Записи за день'}${L.length?': <b>'+L.length+'</b>':''}</span></div>
+    <form class="dnew" data-xdnew="${d}" autocomplete="off" novalidate><input name="t" maxlength="1000" placeholder="${d===TODAY?'Что сейчас на уме?':'Дописать про этот день'}" enterkeyhint="send" aria-label="Новая запись в дневник"><button type="submit" class="pxb dgo" aria-label="Записать">+</button></form>
+    ${L.length?`<ul class="dlog">${li}</ul>`:`<p class="hint">Пока пусто. Пиши по чуть-чуть в течение дня: запись появится со временем.</p>`}</div>`;}
+function diaryCtl(d){const e=DY()[d]||{};
+  return diaryEntries(d)+`<div class="drw"><div class="dlab"><span>Сон${e.sl!=null?': <b>'+num1(e.sl)+' ч</b>':''}</span><span class="dstep"><button type="button" data-xdp="${d}|slx|-0.5" aria-label="Меньше на полчаса">−½</button><button type="button" data-xdp="${d}|slx|0.5" aria-label="Больше на полчаса">+½</button></span></div>
+    <div class="dbtns">${[4,5,6,7,8,9,10].map(h=>`<button type="button" data-xdp="${d}|sl|${h}" aria-pressed="${e.sl===h}">${h}</button>`).join('')}</div></div>
+  <div class="drw"><div class="dlab"><span>Настроение</span></div><div class="dbtns mo">${MOODS.map((m,i)=>`<button type="button" data-xdp="${d}|mo|${i+1}" aria-pressed="${e.mo===i+1}" aria-label="Настроение ${i+1} из 5">${m}</button>`).join('')}</div></div>
+  <div class="drw"><div class="dlab"><span>Энергия${e.en?': <b>'+ENL[e.en-1]+'</b>':''}</span></div><div class="dbtns">${[1,2,3,4,5].map(i=>`<button type="button" data-xdp="${d}|en|${i}" aria-pressed="${e.en===i}" aria-label="Энергия ${i} из 5">${i}</button>`).join('')}</div></div>`;}
+function vDiary(){
+  return dnav('mood')+`<div class="mon"><button type="button" data-xdd="-1" aria-label="Предыдущий день">‹</button><b>${dayLbl(dDay)}</b><button type="button" data-xdd="1" aria-label="Следующий день"${dDay>=TODAY?' disabled':''}>›</button></div>
+  <div class="card dq">${diaryCtl(dDay)}</div>`+dchart();}
+{const o=HV.home;HV.home=function(){const n=dEnts(TODAY).length;return o().replace('<b>Как ты сегодня?</b>','<b>Дневник'+(n?' · '+n:'')+'</b>');};}
+/* итоги недели теперь только в меню «Я» */
+function h2HomeTop(){const hr=new Date().getHours();const over=tasks().some(t=>!t.done&&t.due&&t.due<TODAY);
+  return (over||hr>=17?mvCard():'')+paysSoon();}
+function dEntSheet(d,id){const e=DY()[d],x=e&&(e.es||[]).find(y=>y.id===id);if(!x)return;const dt=new Date(x.ts);
+  openSheet(`<h3>Запись в дневнике</h3><label class="fld"><span>Текст</span><textarea id="deT" rows="5" maxlength="1000">${escH(x.t)}</textarea></label>
+  <p class="hint">${dayLbl(d)}${iso(dt)===d?', '+P2(dt.getHours())+':'+P2(dt.getMinutes()):''}</p>
+  <div class="sacts"><button type="button" class="btn-s danger" data-xdedel="${d}|${id}">Удалить</button><span class="grow"></span><button type="button" class="btn-s ghost" data-xclose>Отмена</button><button type="button" class="btn-s" data-xdesave="${d}|${id}">Сохранить</button></div>`);}
+function h10Click(ev){let b;const T=ev.target;
+  if((b=T.closest('[data-xde]'))){const [d,id]=b.dataset.xde.split('|');dEntSheet(d,id);return true;}
+  if((b=T.closest('[data-xdesave]'))){const [d,id]=b.dataset.xdesave.split('|'),e=DY()[d],x=e&&(e.es||[]).find(y=>y.id===id),ta=document.getElementById('deT');if(!x||!ta)return true;
+    const v=ta.value.trim();if(!v){toast('Запись пустая. Чтобы убрать её, нажми «Удалить»');hap('warn');return true;}
+    x.t=v.slice(0,1000);x.eu=Date.now();e.ts=Date.now();docSet('diary');hap('ok');pendingRender=true;closeSheet();return true;}
+  if((b=T.closest('[data-xdedel]'))){if(!armed(b))return true;const [d,id]=b.dataset.xdedel.split('|'),e=DY()[d];if(!e)return true;
+    e.es=(e.es||[]).filter(y=>y.id!==id);e.dx=[...(e.dx||[]),id].slice(-50);if(!e.es.length)delete e.es;e.ts=Date.now();
+    if(e.sl==null&&!e.mo&&!e.en&&!e.es)delete DY()[d];docSet('diary');hap('ok');pendingRender=true;closeSheet();return true;}
+  return false;}
+viewEl.addEventListener('submit',e=>{const f=e.target;if(!f.matches||!f.matches('form.dnew'))return;e.preventDefault();
+  const inp=f.elements.t;if(dAddEntry(f.dataset.xdnew,inp.value)){inp.value='';hap('ok');toast('Записано в дневник');rerender();}else inp.focus();});
+
+/* hub11: главный экран «Пульт + Квесты» */
+const H11={d:false};
+function ring11(p,c,txt){p=Math.max(0,Math.min(1,p));const n=Math.round(p*10);let a='';for(let i=0;i<10;i++)a+=(i<n?'4 1 ':'0 5 ');
+  return `<span class="rg"><svg viewBox="0 0 60 60" aria-hidden="true"><g fill="none" stroke-width="7" transform="rotate(-90 30 30)"><circle cx="30" cy="30" r="22" stroke="var(--line)" pathLength="60" stroke-dasharray="4 2"/><circle cx="30" cy="30" r="22" stroke="${c}" pathLength="60" stroke-dasharray="${n?Math.round(p*60)+' 100':'0 100'}"/></g></svg><b>${txt}</b></span>`;}
+function h11Stats(){const T=tasks().filter(t=>t.done?(t.doneAt&&iso(new Date(t.doneAt))===TODAY):((t.due&&t.due<=TODAY)||prioT(t)===3));
+  const tdone=T.filter(t=>t.done).length,H=habits().list,hd=H.filter(h=>hdone(h.id,TODAY)).length,
+  fm=fl().filter(x=>iso(new Date(x.ts))===TODAY).reduce((a,x)=>a+(x.m||0),0),dn=dEnts(TODAY).length,
+  over=tasks().some(t=>!t.done&&t.due&&t.due<TODAY);
+  return {T,tdone,H,hd,fm,dn,over};}
+function h11Hero(S){const lv=lvlOf(),hot=tasks().filter(t=>!t.done&&((t.due&&t.due<=TODAY)||prioT(t)===3)).length;
+  const face=S.over?'{•︵•}':(S.tdone+S.hd+S.dn>0?'{^‿^}':'{·‿·}');
+  const say=S.over?'есть просроченное, давай разберём':S.tdone+S.hd+S.dn>0?'день идёт хорошо':'жду, с чего начнём';
+  return `<section class="h11hero"><div class="h11top"><span>${DN[now.getDay()].toLowerCase()}, ${now.getDate()} ${MN[now.getMonth()]}</span></div>
+  <a class="h11pet" href="#me" aria-label="Питомец, открыть профиль">${petSvg(face)}</a>
+  <p class="h11say">${say}${hot?' · '+hot+' '+plural(hot,'дело горит','дела горят','дел горят'):''}</p>
+  <div class="h11xp"><span>XP</span><div class="xpbar"><i style="width:${lv.x/5}%"></i></div><span>${lv.x}/500</span></div></section>`;}
+function h11Tiles(S){const hl=S.H.length,tt=S.T.length;
+  const t=(href,rg,name,sub,attr)=>`<a class="h11t" href="${href}"${attr||''}>${rg}<span><b>${name}</b><small>${sub}</small></span></a>`;
+  return `<div class="h11tiles">
+  ${t('#mood',ring11(S.dn/3,'var(--ac)',S.dn),'Дневник',S.dn?S.dn+' '+plural(S.dn,'запись','записи','записей'):'записать')}
+  ${t('#habits',ring11(hl?S.hd/hl:0,'var(--h-mint)',hl?S.hd+'/'+hl:'0'),'Привычки',hl?'сегодня':'добавить')}
+  <button type="button" class="h11t" data-xh11focus="1">${ring11(S.fm/30,'var(--h-amber)',S.fm)}<span><b>Фокус</b><small>${S.fm?'мин сегодня':'начать'}</small></span></button>
+  ${t('#tasks',ring11(tt?S.tdone/tt:0,'var(--coral)',tt?S.tdone+'/'+tt:'0'),'Дела',tt-S.tdone?(tt-S.tdone)+' осталось':'всё сделано')}</div>`;}
+function h11Quests(S){const hot=tasks().filter(t=>!t.done&&((t.due&&t.due<=TODAY)||prioT(t)===3)).sort(tsort)[0];
+  const q=(done,href,txt,xp,attr,cls)=>`<li><a class="h11q${done?' done':''}${cls||''}" href="${href}"${attr||''}><span class="h11ck">${done?'✓':''}</span><span class="h11qt">${txt}</span><span class="h11xpl">${xp}</span></a></li>`;
+  const hl=S.H.length,L=[];
+  if(hot)L.push(q(false,'#tasks','Закрыть «'+escH(short(hot.t,22))+'»','горит','',' hot'));
+  if(hl)L.push(q(S.hd>=hl,'#habits','Привычки: '+S.hd+' из '+hl,'+5'));
+  L.push(q(S.dn>0,'#mood','Запись в дневник','+5'));
+  L.push(q(S.fm>=25,'#home','Фокус 25 минут','+5',' data-xh11focus="1"'));
+  const done=L.filter(x=>x.includes(' done')).length;
+  return `<section class="sec h11qs"><div class="sec-h"><h3>Квесты дня · ${done}/${L.length}</h3></div><ul class="h11ql">${L.join('')}</ul></section>`;}
+HV.home=function(){const S=h11Stats(),G=gActive(),
+  wc=wTodayCard().replace('class="wcard','class="wcard mini').replace(/<span class="go2">[^<]*<\/span>/,'').replace(/<span class="wic">.*?<\/span>/,'<span class="wic">'+pxi('dumb')+'</span>'),
+  gp=G.length?Math.round(G.reduce((a,g)=>a+Math.min(1,gprog(g).p),0)/G.length*100):0,
+  st=tasks().filter(t=>!t.done&&isStudy(t)&&dleft(t)!=null&&dleft(t)>=0&&dleft(t)<=7).sort(dsort).slice(0,2);
+  return h11Hero(S)+qaBox({hero:true})+h11Quests(S)
+  +`<details class="card h11day"${H11.d?' open':''} ontoggle="H11.d=this.open"><summary><b>Ещё</b><small>сводка, план дня, цели</small></summary>${h2HomeTop()}${h11Tiles(S)}${todayBlocks()}
+  <div class="tiles">${wc}<a class="wcard mini goalt" href="#goals"><span class="wic">${pxi('target')}</span><span><b>Цели</b><span>${G.length?G.length+' '+plural(G.length,'цель','цели','целей')+(G[0].due?' · до '+fmtD(G[0].due):' · '+gp+'%'):'поставить'}</span></span></a></div>
+  ${st.length?`<section class="sec"><div class="sec-h"><h3>Учёба</h3><a href="#study">предметы</a></div><ul class="tlist">${st.map(t=>taskRow(t)).join('')}</ul></section>`:''}</details>`;};
+function h11Click(ev){const b=ev.target.closest('[data-xh11focus]');if(b){ev.preventDefault();focusSheet('','');return true;}return false;}
+
+
 
 
 
@@ -4095,7 +4246,7 @@ function catSheet(id){const c=id?cats().find(x=>x.id===id):null;if(id&&!c)return
 function settingsSheet(){openSheet(`<h3>Настройки</h3>
   <div class="fld"><span>Цвет акцента</span><div class="swatches">${Object.entries(ACC).map(([k,a])=>`<button type="button" class="sw" data-acc="${k}" aria-pressed="${k===accent}" style="--sw:${a.hero}"><i></i>${a.n}</button>`).join('')}</div></div>
   <div class="fld"><span>Где хранятся данные</span><p class="hint" style="font-size:14px">${CS?'В облаке Telegram, в твоём аккаунте. Открой бота на телефоне или на компьютере: данные будут одни и те же. Кроме тебя их никто не видит.':'Только в этом браузере.'}</p></div>
-  <div class="fld"><span>Умная строка понимает</span><p class="hint" style="font-size:14px"><b>Дела:</b> сегодня, завтра, послезавтра · до пятницы, в следующую среду · 5 ноября, 15.11 · через 3 дня, через неделю · на выходных, до конца месяца · в 18:00, вечером · срочно, важно, когда-нибудь · предметы по названию<br><br><b>Заметки:</b> «идея: …» → Идеи · «заметка: …» → Личное · «учёба: …» или название любой категории с двоеточием · «ДОСМИ: требования…» → заметка к предмету · «купить молоко, хлеб, яйца» без даты → в список покупок · ссылка → Идеи</p></div>
+  <div class="fld"><span>Умная строка понимает</span><p class="hint" style="font-size:14px"><b>Дела:</b> сегодня, завтра, послезавтра · до пятницы, в следующую среду · 5 ноября, 15.11 · через 3 дня, через неделю · на выходных, до конца месяца · в 18:00, вечером · срочно, важно, когда-нибудь · предметы по названию<br><br><b>Заметки:</b> «идея: …» → Идеи · «заметка: …» → Личное · «учёба: …» или название любой категории с двоеточием · «ДОСМИ: требования…» → заметка к предмету · «купить молоко, хлеб, яйца» без даты → в список покупок · ссылка → Идеи<br><br><b>Дневник:</b> «дневник: …» → запись за сегодня</p></div>
   ${bkField()}
   ${h2Settings()}
   <div class="sacts"><span class="grow"></span><button type="button" class="btn-s" data-xclose>Готово</button></div>`);}
@@ -4160,7 +4311,7 @@ addEventListener('pagehide',()=>{flushNote();flushPush();});
 /* ================= HUB: events ================= */
 let doneT=null;
 function hubClick(ev){const T=ev.target;let b;
-  if(h2Click(ev)||h3Click(ev)||h5Click(ev)||h8Click(ev)||h9Click(ev))return;
+  if(h2Click(ev)||h3Click(ev)||h5Click(ev)||h8Click(ev)||h9Click(ev)||h10Click(ev)||h11Click(ev))return;
   if((b=T.closest('[data-xclose]'))){closeSheet();return;}
   if((b=T.closest('[data-xdone]'))){const t=taskById(b.dataset.xdone);if(!t)return;t.done=!t.done;t.doneAt=t.done?Date.now():null;docSet('tasks');xpAdd(t.done?10:-10);hap(t.done?'ok':'light');
     b.setAttribute('aria-pressed',String(t.done));const row=b.closest('.trow');if(row){row.classList.toggle('done',t.done);if(t.done)row.classList.add('fade');}
