@@ -1131,6 +1131,31 @@ body.hub .hsr{display:inline-block}
 .pet-px .f{fill:var(--fg);opacity:.55}
 .pet-px .f.st{fill:var(--h-amber);opacity:.9}
 .pet-px .r{fill:#FF4D5E}
+/* hub15 */
+.h15row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.h15c{display:grid;justify-items:center;gap:4px;padding:8px 2px;background:var(--surface);color:var(--fg);border:2px solid var(--line);border-radius:8px;box-shadow:0 3px 0 color-mix(in srgb,#000 55%,transparent);text-decoration:none;font:inherit;cursor:pointer;min-height:44px}
+.h15c .rg{position:relative;width:46px;height:46px;display:grid;place-items:center}
+.h15c .rg svg{position:absolute;inset:0;width:100%;height:100%}
+.h15c .rg b{position:relative;font:600 15px var(--px)}
+.h15c small{font:500 12px var(--px);color:var(--muted)}
+.h15ok{padding:16px;border:2px dashed var(--line);border-radius:8px;font:500 15px/1.4 var(--px);color:var(--muted);text-align:center}
+.h15path{position:relative;margin:14px 0 8px;padding-left:22px}
+.h15path::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:0;border-left:3px dotted var(--line)}
+.h15n{position:relative;margin:0 0 12px}
+.h15dot{position:absolute;left:-22px;top:3px;width:16px;height:16px;background:var(--panel);border:3px solid var(--line);box-sizing:border-box}
+.h15n.now .h15dot{background:var(--ac);border-color:var(--ac);box-shadow:0 0 12px color-mix(in srgb,var(--ac) 70%,transparent)}
+.h15n.ok .h15dot{background:var(--h-mint);border-color:var(--h-mint)}
+.h15nh{display:flex;align-items:baseline;gap:10px;min-height:28px;margin-bottom:6px}
+.h15nh b{font:600 18px var(--px)}.h15nh small{font:500 13px var(--px);color:var(--muted)}
+.h15n.now .h15nh b{color:var(--ac)}
+.h15plus{margin-left:auto;width:44px;height:36px;border:2px solid var(--line);background:var(--panel);color:var(--ac);font:600 22px var(--px);border-radius:6px;cursor:pointer;padding:0}
+.h15bar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.h15s{display:grid;justify-items:center;align-content:center;gap:2px;aspect-ratio:1/1.12;padding:6px 2px;background:var(--surface);color:var(--fg);border:3px solid var(--line);border-radius:6px;box-shadow:inset 0 0 0 2px var(--bg),0 3px 0 color-mix(in srgb,#000 55%,transparent);text-decoration:none;font:inherit;cursor:pointer}
+.h15ic svg{width:30px;height:30px;fill:currentColor}
+.h15s.c1{color:var(--ac)}.h15s.c2{color:var(--h-mint)}.h15s.c3{color:var(--h-amber)}.h15s.c4{color:var(--coral)}
+.h15s b{font:600 18px var(--px);color:var(--fg)}
+.h15s small{font:500 12px var(--px);color:var(--muted)}
+
 /* hub14 */
 .styr{display:grid;gap:4px;margin:6px 0}
 .styr small{font:500 13px var(--px);color:var(--muted)}
@@ -4417,8 +4442,8 @@ viewEl.addEventListener('submit',async e=>{const f=e.target;if(!f.matches||!f.ma
     try{await vOpen(p);hap('ok');rerender();}catch(x){er.textContent='Неверный мастер-пароль';hap('warn');btn.disabled=false;f.elements.p.value='';}}});
 
 /* hub14: варианты оформления: углы, свечение, фон, размер */
-var STYD={sc:'px',sg:'off',sb:'dots',sz:'m'};
-var STYL=[['sc','Углы',[['px','пиксельные'],['round','скруглённые'],['sharp','острые']]],['sg','Свечение',[['off','нет'],['on','есть']]],['sb','Фон',[['dots','точки'],['grid','клетка'],['none','пусто']]],['sz','Размер',[['s','мельче'],['m','обычный'],['l','крупнее']]]];
+var STYD={sc:'px',sg:'off',sb:'dots',sz:'m',hm:'c'};
+var STYL=[['sc','Углы',[['px','пиксельные'],['round','скруглённые'],['sharp','острые']]],['sg','Свечение',[['off','нет'],['on','есть']]],['sb','Фон',[['dots','точки'],['grid','клетка'],['none','пусто']]],['sz','Размер',[['s','мельче'],['m','обычный'],['l','крупнее']]],['hm','Главная',[['a','полоска'],['b','путь дня'],['c','хотбар'],['q','квесты']]]];
 function styGet(){let s={};try{s=(DOCS.cfg.v&&DOCS.cfg.v.sty)||{};}catch(e){}return {...STYD,...s};}
 function applyStyle(){try{const s=styGet(),r=document.documentElement;
   ['sc','sg','sb'].forEach(k=>{if(s[k]!==STYD[k])r.setAttribute('data-'+k,s[k]);else r.removeAttribute('data-'+k);});
@@ -4426,8 +4451,43 @@ function applyStyle(){try{const s=styGet(),r=document.documentElement;
 function applyAccent(){const a=ACC[accent],el=document.documentElement,r=el.style;r.setProperty('--hero',a.hero);r.setProperty('--coral',isDark()?a.d:a.l);r.setProperty('--ac',isDark()?a.d:a.l);h7Pal(a);r.setProperty('--on-hero',a.dark?'#F4F6FF':'#1A1214');if(a.dark)el.setAttribute('data-acc-dark','');else el.removeAttribute('data-acc-dark');applyStyle();}
 function styUi(){const s=styGet();return `<div class="fld"><span>Стиль</span>${STYL.map(([k,n,O])=>`<div class="styr"><small>${n}</small><div class="chips">${O.map(([v,l])=>`<button type="button" class="chip${s[k]===v?' on':''}" data-xsty="${k}:${v}" aria-pressed="${s[k]===v}">${l}</button>`).join('')}</div></div>`).join('')}</div>`;}
 function h14Click(ev){const b=ev.target.closest('[data-xsty]');if(!b)return false;
-  const [k,v]=b.dataset.xsty.split(':'),c=DOCS.cfg.v;docSet('cfg',{...c,sty:{...(c.sty||{}),[k]:v}});applyStyle();hap('sel');settingsSheet();return true;}
+  const [k,v]=b.dataset.xsty.split(':'),c=DOCS.cfg.v;docSet('cfg',{...c,sty:{...(c.sty||{}),[k]:v}});applyStyle();hap('sel');settingsSheet();if(k==='hm')rerender();return true;}
 applyStyle();
+
+
+/* hub15: три варианта низа главной (полоска / путь дня / хотбар), выбор в настройках «Стиль → Главная» */
+const H15={m:false};
+function h15Hot(){return tasks().filter(t=>!t.done&&((t.due&&t.due<=TODAY)||prioT(t)===3)).sort(tsort);}
+function h15Rings(S){const hl=S.H.length,tt=S.T.length;
+  return [['#mood',ring11(S.dn/3,'var(--ac)',S.dn),'Дневник',''],['#habits',ring11(hl?S.hd/hl:0,'var(--h-mint)',hl?S.hd+'/'+hl:'0'),'Привычки',''],
+    ['',ring11(S.fm/30,'var(--h-amber)',S.fm),'Фокус',' data-xh11focus="1"'],['#tasks',ring11(tt?S.tdone/tt:0,'var(--coral)',tt?S.tdone+'/'+tt:'0'),'Дела','']];}
+function h15More(S,tiles){const G=gActive(),
+  wc=wTodayCard().replace('class="wcard','class="wcard mini').replace(/<span class="go2">[^<]*<\/span>/,'').replace(/<span class="wic">.*?<\/span>/,'<span class="wic">'+pxi('dumb')+'</span>'),
+  gp=G.length?Math.round(G.reduce((a,g)=>a+Math.min(1,gprog(g).p),0)/G.length*100):0,
+  st=tasks().filter(t=>!t.done&&isStudy(t)&&dleft(t)!=null&&dleft(t)>=0&&dleft(t)<=7).sort(dsort).slice(0,2);
+  return `<details class="card h11day"${H15.m?' open':''} ontoggle="H15.m=this.open"><summary><b>Ещё</b><small>план дня, цели, учёба</small></summary>${h2HomeTop()}${tiles?h11Tiles(S):''}${todayBlocks()}
+  <div class="tiles">${wc}<a class="wcard mini goalt" href="#goals"><span class="wic">${pxi('target')}</span><span><b>Цели</b><span>${G.length?G.length+' '+plural(G.length,'цель','цели','целей')+(G[0].due?' · до '+fmtD(G[0].due):' · '+gp+'%'):'поставить'}</span></span></a></div>
+  ${st.length?`<section class="sec"><div class="sec-h"><h3>Учёба</h3><a href="#study">предметы</a></div><ul class="tlist">${st.map(t=>taskRow(t)).join('')}</ul></section>`:''}</details>`;}
+/* A: полоска */
+function h15A(S){const hot=h15Hot()[0];
+  return `<div class="h15row">${h15Rings(S).map(([h,rg,n,a])=>h?`<a class="h15c" href="${h}">${rg}<small>${n}</small></a>`:`<button type="button" class="h15c"${a}>${rg}<small>${n}</small></button>`).join('')}</div>
+  <section class="sec"><div class="sec-h"><h3>Сейчас</h3><a href="#tasks">все дела</a></div>${hot?`<ul class="tlist">${taskRow(hot)}</ul>`:`<div class="h15ok">Всё чисто. Можно отдыхать или записать что-нибудь в строке выше.</div>`}</section>`+h15More(S,false);}
+/* B: путь дня */
+function h15B(S){const cur=curSlot(),H=habits().list;
+  const nodes=SLOTS.concat([['','В течение дня','']]).map(([k,l,tm])=>{
+    const tt=S.T.filter(t=>slotOf(t)===k).sort((a,b)=>(!!a.done-!!b.done)||String(a.time||'99').localeCompare(String(b.time||'99'))),hh=H.filter(h=>(h.slot||'')===k),
+      total=tt.length+hh.length,done=tt.filter(t=>t.done).length+hh.filter(h=>hdone(h.id,TODAY)).length;
+    if(!k&&!total)return '';
+    const st=total&&done===total?'ok':(k===cur?'now':''),items=tt.map(t=>taskRow(t)).join('')+hh.map(h=>habitRowToday(h)).join('');
+    return `<div class="h15n ${st}"><i class="h15dot"></i><div class="h15nh"><b>${l}</b><small>${tm&&!total?tm:(total?done+'/'+total:'пусто')}</small>${k?`<button type="button" class="h15plus" data-xadd="${k}" aria-label="Добавить в «${l}»">+</button>`:''}</div>${items?`<ul class="tlist">${items}</ul>`:''}</div>`;}).join('');
+  return `<section class="h15path">${nodes}</section>`+h15More(S,true);}
+/* C: хотбар */
+function h15C(S){const hl=S.H.length,tt=S.T.length,hot=h15Hot().slice(0,3);
+  const sl=(h,ic,big,lab,a,c)=>{const t=`<span class="h15ic">${pxi(ic)}</span><b>${big}</b><small>${lab}</small>`;return h?`<a class="h15s ${c}" href="${h}">${t}</a>`:`<button type="button" class="h15s ${c}"${a}>${t}</button>`;};
+  return `<div class="h15bar">${sl('#mood','notes',S.dn,'дневник','','c1')}${sl('#habits','flame',hl?S.hd+'/'+hl:'0','привычки','','c2')}${sl('','star',S.fm+'м','фокус',' data-xh11focus="1"','c3')}${sl('#tasks','tasks',tt?S.tdone+'/'+tt:'0','дела','','c4')}</div>
+  ${hot.length?`<section class="sec"><div class="sec-h"><h3>Горит</h3><a href="#tasks">все дела</a></div><ul class="tlist">${hot.map(t=>taskRow(t)).join('')}</ul></section>`:''}`+h15More(S,false);}
+{const q=HV.home;HV.home=function(){const m=styGet().hm;if(m==='q')return q();const S=h11Stats();
+  return h11Hero(S)+qaBox({hero:true})+(m==='b'?h15B(S):m==='c'?h15C(S):h15A(S));};}
 
 viewEl.addEventListener('input',e=>{const i=e.target;if(i.dataset&&i.dataset.xvq){VT.q=i.value;const pos=i.selectionStart;rerender();const n=viewEl.querySelector('.vq');if(n){n.focus();try{n.setSelectionRange(pos,pos);}catch(x){}}}});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){VT.hid=Date.now();}else if(VT.key&&VT.hid&&Date.now()-VT.hid>60000)vLock();});
