@@ -1385,6 +1385,20 @@ main{grid-template-columns:minmax(0,1fr)}
 /* hub16: «Ещё» — текст по центру высоты, без пустой полосы под заголовком */
 .h11day>summary{align-items:center}
 .h11day:not([open]){padding-top:6px;padding-bottom:6px}
+/* hub17 */
+.h11xp .xpbar{height:10px;border-radius:0;background:color-mix(in srgb,var(--line) 70%,transparent);-webkit-mask:repeating-linear-gradient(90deg,#000 0 calc(10% - 3px),transparent 0 10%);mask:repeating-linear-gradient(90deg,#000 0 calc(10% - 3px),transparent 0 10%)}
+.h11xp .xpbar i{transition:width .3s steps(5)}
+.pet-px .z{fill:var(--fg);opacity:.7}
+.pet-px .d{fill:var(--h-sky)}
+.pet-px.sleep{fill:color-mix(in srgb,var(--ac) 70%,var(--muted));animation-duration:3.6s}
+.h15s{position:relative}
+.h15s.full{border-color:currentColor;box-shadow:inset 0 0 0 2px var(--bg),0 3px 0 color-mix(in srgb,#000 55%,transparent),0 0 12px color-mix(in srgb,currentColor 45%,transparent)}
+.h17ck{position:absolute;top:4px;right:4px;width:14px;height:14px;display:grid;place-items:center;background:currentColor;border-radius:2px}
+.h17ck svg{width:10px;height:10px;stroke:var(--bg);fill:none}
+.h17sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.h17why{font:500 12px var(--px);color:var(--h-amber)}
+.h17why.over{color:var(--coral)}
+.h17why.imp{color:var(--ac)}
 </style>
 
 <header class="top">
@@ -4491,6 +4505,44 @@ function h15C(S){const hl=S.H.length,tt=S.T.length,hot=h15Hot().slice(0,3);
   ${hot.length?`<section class="sec"><div class="sec-h"><h3>Горит</h3><a href="#tasks">все дела</a></div><ul class="tlist">${hot.map(t=>taskRow(t)).join('')}</ul></section>`:''}`+h15More(S,false);}
 {const q=HV.home;HV.home=function(){const m=styGet().hm;if(m==='q')return q();const S=h11Stats();
   return h11Hero(S)+qaBox({hero:true})+(m==='b'?h15B(S):m==='c'?h15C(S):h15A(S));};}
+
+/* hub17: XP-полоса обновляется сразу, питомец реагирует на день, хотбар подсвечивает готовое, «Горит» с причиной */
+var H17H=null; // час для тестов; null — настоящее время
+function h17Hour(){return H17H==null?new Date().getHours():H17H;}
+/* XP: раньше xpAdd обновлял только LVL, полоса на главной стояла до перерисовки */
+{const u=lvlUpdate;lvlUpdate=function(){u();const lv=lvlOf(),b=document.querySelector('.h11xp i'),s=document.querySelector('.h11xp span:last-child');
+  if(b)b.style.width=lv.x/5+'%';if(s)s.textContent=lv.x+'/500';};}
+/* питомец: {-.-} спит (глаза-чёрточки и «Z»), {•_•} переживает (капля пота) */
+{const ps=petSvg;petSvg=function(face){if(face!=='{-.-}'&&face!=='{•_•}')return ps(face);
+  const f=petForm(lvlOf().l);let s=ps('{·‿·}');
+  if(face==='{-.-}'){
+    for(let i=0;i<f.eh;i++)for(const x of [f.xl,f.xr])s=s.replace(`<rect class="e" x="${x+1}" y="${f.ey+i}" width="1" height="1"/>`,`<rect x="${x+1}" y="${f.ey+i}" width="1" height="1"/>`);
+    const y=f.ey+f.eh-1;
+    s=s.replace('</svg>',`<rect class="e" x="${f.xl}" y="${y}" width="2" height="1"/><rect class="e" x="${f.xr+1}" y="${y}" width="2" height="1"/><rect class="z" x="0" y="0" width="4" height="1"/><rect class="z" x="2" y="1" width="1" height="1"/><rect class="z" x="1" y="2" width="1" height="1"/><rect class="z" x="0" y="3" width="4" height="1"/></svg>`).replace('class="pet-px ','class="pet-px sleep ');
+  }else s=s.replace('</svg>',`<rect class="d" x="13" y="${Math.max(0,f.ey-1)}" width="1" height="2"/></svg>`);
+  return s;};}
+function h11Hero(S){const lv=lvlOf(),hot=h15Hot().length,hr=h17Hour(),act=S.tdone+S.hd+S.dn>0,
+  all=!hot&&S.tdone>0&&S.hd===S.H.length;
+  const [face,say]=S.over?['{•︵•}','есть просроченное, давай разберём']
+    :(hr>=23||hr<6)?['{-.-}','поздно, пора спать']
+    :all?['{^‿^}','всё сделано, можно отдыхать']
+    :hot?['{•_•}',act?'день идёт хорошо':'жду, с чего начнём']
+    :act?['{^‿^}','день идёт хорошо']:['{·‿·}','жду, с чего начнём'];
+  return `<section class="h11hero"><div class="h11top"><span>${DN[now.getDay()].toLowerCase()}, ${now.getDate()} ${MN[now.getMonth()]}</span></div>
+  <a class="h11pet" href="#me" aria-label="Питомец, открыть профиль">${petSvg(face)}</a>
+  <p class="h11say">${say}${hot?' · '+hot+' '+plural(hot,'дело горит','дела горят','дел горят'):''}</p>
+  <div class="h11xp"><span>XP</span><div class="xpbar"><i style="width:${lv.x/5}%"></i></div><span>${lv.x}/500</span></div></section>`;}
+/* «Горит»: почему дело в списке */
+function h17Why(t){const d=t.due?dleft(t):null;
+  return d!=null&&d<0?['просрочено '+(-d)+' дн.','over']:d===0?['сегодня','']:['важное','imp'];}
+function h17Row(t){const [w,c]=h17Why(t),tag=`<span class="h17why ${c}">${w}</span>`,r=taskRow(t);
+  return r.includes('<span class="tmeta">')?r.replace('<span class="tmeta">','<span class="tmeta">'+tag):r.replace('</span></button>','</span><span class="tmeta">'+tag+'</span></button>');}
+/* C: хотбар, готовые ячейки подсвечены */
+function h15C(S){const hl=S.H.length,tt=S.T.length,hot=h15Hot().slice(0,3);
+  const sl=(h,ic,big,lab,a,c,ok)=>{const t=`<span class="h15ic">${pxi(ic)}</span><b>${big}</b><small>${lab}${ok?'<span class="h17sr"> — готово</span>':''}</small>${ok?`<span class="h17ck" aria-hidden="true">${ICON.check}</span>`:''}`,cl=`h15s ${c}${ok?' full':''}`;
+    return h?`<a class="${cl}" href="${h}">${t}</a>`:`<button type="button" class="${cl}"${a}>${t}</button>`;};
+  return `<div class="h15bar">${sl('#mood','notes',S.dn,'дневник','','c1',S.dn>0)}${sl('#habits','flame',hl?S.hd+'/'+hl:'0','привычки','','c2',hl>0&&S.hd===hl)}${sl('','star',S.fm+'м','фокус',' data-xh11focus="1"','c3',S.fm>=25)}${sl('#tasks','tasks',tt?S.tdone+'/'+tt:'0','дела','','c4',tt>0&&S.tdone===tt)}</div>
+  ${hot.length?`<section class="sec"><div class="sec-h"><h3>Горит</h3><a href="#tasks">все дела</a></div><ul class="tlist">${hot.map(h17Row).join('')}</ul></section>`:''}`+h15More(S,false);}
 
 viewEl.addEventListener('input',e=>{const i=e.target;if(i.dataset&&i.dataset.xvq){VT.q=i.value;const pos=i.selectionStart;rerender();const n=viewEl.querySelector('.vq');if(n){n.focus();try{n.setSelectionRange(pos,pos);}catch(x){}}}});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){VT.hid=Date.now();}else if(VT.key&&VT.hid&&Date.now()-VT.hid>60000)vLock();});
